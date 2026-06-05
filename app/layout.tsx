@@ -1,50 +1,36 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tourmedia.pro"),
+  metadataBase: new URL("https://tour-media-alpha.vercel.app"),
   title: {
-    default: "TourMedia | Лейбл & Производство Hi-End Акустики",
-    template: "%s | TourMedia",
+    default: "Продюсер Александр Турло | TourMedia DJ Agency",
+    template: "%s | Александр Турло",
   },
   description:
-    "TourMedia — музыкальный лейбл, букинг-агентство и производитель премиальных акустических систем для клубов и концертных площадок.",
+    "Продюсерский центр Александра Турло: постоянный штат профессиональных диджеев, музыкальный консалтинг, контроль персонала и поддержка 24/7.",
   keywords: [
+    "Александр Турло",
     "TourMedia",
-    "музыкальный лейбл",
-    "букинг агентство",
-    "диджеи",
-    "акустические системы",
-    "Hi-End аудио",
-    "клубный звук",
-    "концертное оборудование",
+    "букинг диджеев",
+    "заказать диджея",
+    "продюсерский центр",
+    "диджей на мероприятие",
+    "электронная музыка",
   ],
   openGraph: {
-    title: "TourMedia | Лейбл & Производство Hi-End Акустики",
-    description: "Эксклюзивные диджеи и производство премиальных акустических систем для клубов и концертных площадок.",
-    url: "https://tourmedia.pro",
-    siteName: "TourMedia",
+    title: "Продюсер Александр Турло | TourMedia DJ Agency",
+    description: "Постоянный штат проверенных диджеев, трепетное отношение к музыке и вашему мероприятию. Связь 24/7.",
+    url: "https://tour-media-alpha.vercel.app",
+    siteName: "Александр Турло DJ Agency",
     images: [
       {
-        url: "/og-image.jpg", // Fallback or design assets placeholder
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "TourMedia — Sound Architecture",
+        alt: "Продюсер Александр Турло",
       },
     ],
     locale: "ru_RU",
@@ -52,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TourMedia | Лейбл & Производство Hi-End Акустики",
-    description: "Эксклюзивные диджеи и производство премиальных акустических систем для клубов и концертных площадок.",
+    title: "Продюсер Александр Турло | TourMedia DJ Agency",
+    description: "Постоянный штат проверенных диджеев, трепетное отношение к музыке и вашему мероприятию. Связь 24/7.",
     images: ["/og-image.jpg"],
   },
 };
@@ -64,8 +50,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${inter.variable} ${outfit.variable}`}>
-      <body className="min-h-screen flex flex-col">
+    <html lang="ru">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      </head>
+      <body className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

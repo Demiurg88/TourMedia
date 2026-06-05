@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next";
-import { artists, equipment } from "@/lib/data";
+import { artists } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://tourmedia.pro";
+  const baseUrl = "https://tour-media-alpha.vercel.app";
 
   // ── Static Routes ──
-  const staticPaths = ["", "/about", "/artists", "/equipment", "/contact"];
+  const staticPaths = ["", "/about", "/artists", "/contact"];
   const staticRoutes = staticPaths.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
@@ -21,13 +21,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // ── Dynamic Equipment Pages ──
-  const equipmentRoutes = equipment.map((item) => ({
-    url: `${baseUrl}/equipment/${item.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...artistRoutes, ...equipmentRoutes];
+  return [...staticRoutes, ...artistRoutes];
 }

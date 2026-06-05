@@ -1,14 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { motion } from "framer-motion";
-
-type HoveredSide = "left" | "right" | null;
+import { artists } from "@/lib/data";
 
 export default function HomePage() {
-  const [hovered, setHovered] = useState<HoveredSide>(null);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,432 +25,249 @@ export default function HomePage() {
     },
   };
 
+  const features = [
+    {
+      icon: (
+        <svg className="w-6 h-6 text-accent-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+      ),
+      title: "Постоянный штат диджеев",
+      desc: "Только проверенные профессионалы с многолетним опытом клубных выступлений и масштабных ивентов.",
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6 text-accent-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+        </svg>
+      ),
+      title: "Контроль музыкального материала",
+      desc: "Трепетно относимся к музыкальному формату вашего бренда и целевой аудитории. Никакого случайного плейлиста.",
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6 text-accent-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+        </svg>
+      ),
+      title: "Продюсерский контроль",
+      desc: "Наши продюсеры постоянно контролируют работу персонала и находятся на площадке для координации.",
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6 text-accent-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+        </svg>
+      ),
+      title: "Связь 24/7",
+      desc: "Быстро реагируем на любые изменения в тайминге, райдере или программе. Мы на связи круглосуточно.",
+    },
+  ];
+
   return (
-    <section
-      id="hero-split"
-      className="relative flex flex-col md:flex-row w-full overflow-hidden"
-      style={{ minHeight: "calc(100vh - 5rem)" }}
-    >
-      {/* ═══════════════════════════════════════════
-          LEFT PANEL — Label & Booking
-          ═══════════════════════════════════════════ */}
-      <div
-        onMouseEnter={() => setHovered("left")}
-        onMouseLeave={() => setHovered(null)}
-        className="relative overflow-hidden cursor-pointer group flex-1"
-        style={{
-          flex:
-            hovered === "left"
-              ? "1.5 1 0%"
-              : hovered === "right"
-                ? "0.7 1 0%"
-                : "1 1 0%",
-          transition: "flex 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-          minHeight: "50vh",
-        }}
-      >
-        {/* Background base */}
-        <div className="absolute inset-0 bg-bg-primary" />
-
-        {/* Neon glow — pulsating radial gradients */}
-        <div
-          className="absolute inset-0 transition-opacity duration-700"
-          style={{ opacity: hovered === "right" ? 0.3 : 1 }}
-        >
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-primary/[0.06] blur-[100px] group-hover:bg-accent-primary/[0.12] group-hover:scale-110 transition-all duration-1000" />
-          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-accent-secondary/[0.04] blur-[80px] group-hover:bg-accent-secondary/[0.08] transition-all duration-1000" />
-        </div>
-
-        {/* Animated equalizer vertical lines */}
-        <div
-          className="absolute inset-0 overflow-hidden transition-opacity duration-700"
-          style={{ opacity: hovered === "right" ? 0.15 : 0.4 }}
-        >
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute bottom-0 w-[1px] bg-gradient-to-t from-accent-primary/30 via-accent-primary/10 to-transparent group-hover:from-accent-primary/50 group-hover:via-accent-primary/20 transition-all duration-700"
-              style={{
-                left: `${8 + i * 8}%`,
-                height: `${30 + Math.sin(i * 1.2) * 25}%`,
-                animationDelay: `${i * 0.15}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Noise overlay */}
+    <div className="relative overflow-hidden min-h-screen">
+      {/* Background patterns */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-accent-primary/[0.04] blur-[140px]" />
+        <div className="absolute bottom-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-accent-secondary/[0.03] blur-[120px]" />
         <div className="noise-overlay absolute inset-0" />
+      </div>
 
-        {/* Dimming overlay when OTHER side is hovered */}
-        <div
-          className="absolute inset-0 bg-black/0 transition-all duration-700 z-10"
-          style={{
-            backgroundColor:
-              hovered === "right" ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0)",
-          }}
-        />
-
-        {/* Divider accent glow on edge */}
-        <div className="hidden md:block absolute top-0 right-0 w-[2px] h-full z-20">
-          <div className="h-full w-full bg-gradient-to-b from-transparent via-accent-primary/20 to-transparent group-hover:via-accent-primary/50 transition-all duration-700" />
-        </div>
-
-        {/* Content Box */}
+      {/* Hero Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 flex flex-col items-center text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-20 flex flex-col items-center justify-center h-full px-8 md:px-12 lg:px-16 py-16 text-center"
+          className="max-w-4xl"
         >
-          {/* Icon */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-8 w-16 h-16 rounded-2xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent-primary/15 group-hover:border-accent-primary/40 transition-all duration-500"
-          >
-            <svg
-              className="w-8 h-8 text-accent-primary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
-              />
-            </svg>
-          </motion.div>
-
           {/* Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-primary/[0.08] border border-accent-primary/20 mb-6 group-hover:bg-accent-primary/[0.12] group-hover:border-accent-primary/30 transition-all duration-500"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-primary/[0.08] border border-accent-primary/20 mb-8"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-accent-primary animate-pulse" />
             <span className="text-[11px] font-semibold text-accent-primary tracking-widest uppercase">
-              Музыка
+              Мы на связи 24/7
             </span>
           </motion.div>
 
           {/* Heading */}
-          <motion.h2
+          <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight font-[var(--font-display)] leading-tight"
+            className="text-5xl md:text-7xl font-bold tracking-tight font-[var(--font-display)] leading-[1.1]"
           >
-            <span className="text-text-primary group-hover:text-white transition-colors duration-500">
-              Лейбл
-            </span>
-            <br />
-            <span className="gradient-text">&amp; Букинг</span>
-          </motion.h2>
+            Эксклюзивный ростер <br />
+            <span className="gradient-text">профессиональных диджеев</span>
+          </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="mt-5 text-base md:text-lg text-text-secondary max-w-sm leading-relaxed group-hover:text-text-primary/80 transition-colors duration-500"
+            className="mt-6 text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
           >
-            Эксклюзивные диджеи для ваших лучших событий
+            Продюсерский центр Александра Турло. Качественный саунд-дизайн, 
+            авторская музыкальная селекция и полный контроль работы персонала на площадке.
           </motion.p>
 
-          {/* CTA Button */}
-          <motion.div variants={itemVariants}>
+          {/* Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          >
             <Link
               href="/artists"
-              id="split-cta-artists"
-              className="mt-8 group/btn relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm
-                bg-accent-primary/10 text-accent-primary border border-accent-primary/30
-                hover:bg-accent-primary hover:text-bg-primary hover:border-accent-primary
-                hover:shadow-xl hover:shadow-accent-primary/25
-                transition-all duration-400 hover:scale-105 active:scale-[0.98]"
+              id="hero-cta-artists"
+              className="px-8 py-4 rounded-full font-semibold text-sm bg-gradient-to-r from-accent-primary to-accent-secondary text-bg-primary hover:shadow-lg hover:shadow-accent-primary/25 transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              Посмотреть ростер
-              <svg
-                className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              Наши диджеи
             </Link>
-          </motion.div>
-
-          {/* Mini stats */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 flex gap-8 opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-          >
-            <div className="text-center">
-              <div className="text-xl font-bold text-text-primary">50+</div>
-              <div className="text-[10px] uppercase tracking-wider text-text-muted mt-0.5">
-                Артистов
-              </div>
-            </div>
-            <div className="w-px bg-border" />
-            <div className="text-center">
-              <div className="text-xl font-bold text-text-primary">200+</div>
-              <div className="text-[10px] uppercase tracking-wider text-text-muted mt-0.5">
-                Событий / год
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* ═══════════════════════════════════════════
-          RIGHT PANEL — Hi-End Acoustics
-          ═══════════════════════════════════════════ */}
-      <div
-        onMouseEnter={() => setHovered("right")}
-        onMouseLeave={() => setHovered(null)}
-        className="relative overflow-hidden cursor-pointer group flex-1"
-        style={{
-          flex:
-            hovered === "right"
-              ? "1.5 1 0%"
-              : hovered === "left"
-                ? "0.7 1 0%"
-                : "1 1 0%",
-          transition: "flex 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-          minHeight: "50vh",
-        }}
-      >
-        {/* Background base */}
-        <div className="absolute inset-0 bg-[#0c0c12]" />
-
-        {/* Metallic / industrial gradient */}
-        <div
-          className="absolute inset-0 transition-opacity duration-700"
-          style={{ opacity: hovered === "left" ? 0.3 : 1 }}
-        >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-accent-gold/[0.04] blur-[100px] group-hover:bg-accent-gold/[0.09] group-hover:scale-110 transition-all duration-1000" />
-          <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-accent-secondary/[0.03] blur-[80px] group-hover:bg-accent-secondary/[0.06] transition-all duration-1000" />
-        </div>
-
-        {/* Geometric grid pattern */}
-        <div
-          className="absolute inset-0 transition-opacity duration-700"
-          style={{ opacity: hovered === "left" ? 0.1 : 0.3 }}
-        >
-          {/* Horizontal lines */}
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={`h-${i}`}
-              className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent group-hover:via-accent-gold/[0.08] transition-all duration-700"
-              style={{ top: `${12.5 * (i + 1)}%` }}
-            />
-          ))}
-          {/* Vertical lines */}
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={`v-${i}`}
-              className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent group-hover:via-accent-gold/[0.08] transition-all duration-700"
-              style={{ left: `${16.66 * (i + 1)}%` }}
-            />
-          ))}
-          {/* Corner accent brackets */}
-          <div className="absolute top-8 right-8 w-12 h-12 border-t border-r border-white/[0.06] group-hover:border-accent-gold/20 transition-colors duration-700" />
-          <div className="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-white/[0.06] group-hover:border-accent-gold/20 transition-colors duration-700" />
-        </div>
-
-        {/* Noise overlay */}
-        <div className="noise-overlay absolute inset-0" />
-
-        {/* Dimming overlay when OTHER side is hovered */}
-        <div
-          className="absolute inset-0 bg-black/0 transition-all duration-700 z-10"
-          style={{
-            backgroundColor:
-              hovered === "left" ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0)",
-          }}
-        />
-
-        {/* Divider accent glow on edge */}
-        <div className="hidden md:block absolute top-0 left-0 w-[2px] h-full z-20">
-          <div className="h-full w-full bg-gradient-to-b from-transparent via-accent-gold/20 to-transparent group-hover:via-accent-gold/50 transition-all duration-700" />
-        </div>
-        {/* Mobile divider */}
-        <div className="md:hidden absolute top-0 left-0 right-0 h-[1px] z-20">
-          <div className="w-full h-full bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
-        </div>
-
-        {/* Content Box */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="relative z-20 flex flex-col items-center justify-center h-full px-8 md:px-12 lg:px-16 py-16 text-center"
-        >
-          {/* Icon */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-8 w-16 h-16 rounded-2xl bg-accent-gold/[0.08] border border-accent-gold/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-accent-gold/[0.12] group-hover:border-accent-gold/40 transition-all duration-500"
-          >
-            <svg
-              className="w-8 h-8 text-[var(--color-accent-gold)]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-              />
-            </svg>
-          </motion.div>
-
-          {/* Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-gold/[0.06] border border-accent-gold/20 mb-6 group-hover:bg-accent-gold/[0.10] group-hover:border-accent-gold/30 transition-all duration-500"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-gold)]" />
-            <span className="text-[11px] font-semibold text-[var(--color-accent-gold)] tracking-widest uppercase">
-              Оборудование
-            </span>
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight font-[var(--font-display)] leading-tight"
-          >
-            <span className="text-text-primary group-hover:text-white transition-colors duration-500">
-              Hi-End
-            </span>
-            <br />
-            <span className="gradient-text-gold">Акустика</span>
-          </motion.h2>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={itemVariants}
-            className="mt-5 text-base md:text-lg text-text-secondary max-w-sm leading-relaxed group-hover:text-text-primary/80 transition-colors duration-500"
-          >
-            Производство и инсталляция звука премиум-класса
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div variants={itemVariants}>
             <Link
-              href="/equipment"
-              id="split-cta-equipment"
-              className="mt-8 group/btn relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm
-                bg-accent-gold/[0.08] text-[var(--color-accent-gold)] border border-accent-gold/30
-                hover:bg-[var(--color-accent-gold)] hover:text-bg-primary hover:border-[var(--color-accent-gold)]
-                hover:shadow-xl hover:shadow-accent-gold/25
-                transition-all duration-400 hover:scale-105 active:scale-[0.98]"
+              href="/contact"
+              id="hero-cta-contact"
+              className="px-8 py-4 rounded-full font-semibold text-sm bg-bg-secondary border border-border text-text-primary hover:bg-bg-tertiary hover:border-text-secondary/30 transition-all duration-300 active:scale-95"
             >
-              Каталог решений
-              <svg
-                className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              Заказать букинг
             </Link>
           </motion.div>
-
-          {/* Mini stats */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 flex gap-8 opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-          >
-            <div className="text-center">
-              <div className="text-xl font-bold text-text-primary">15+</div>
-              <div className="text-[10px] uppercase tracking-wider text-text-muted mt-0.5">
-                Моделей
-              </div>
-            </div>
-            <div className="w-px bg-border" />
-            <div className="text-center">
-              <div className="text-xl font-bold text-text-primary">12</div>
-              <div className="text-[10px] uppercase tracking-wider text-text-muted mt-0.5">
-                Стран
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
-      </div>
+      </section>
 
-      {/* ═══════════════════════════════════════════
-          CENTER LOGO OVERLAY
-          ═══════════════════════════════════════════ */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none hidden md:flex flex-col items-center">
-        <div
-          className="relative w-24 h-24 rounded-full flex items-center justify-center transition-all duration-700"
-          style={{
-            background: "rgba(10, 10, 15, 0.85)",
-            boxShadow:
-              hovered === "left"
-                ? "0 0 40px rgba(0,240,255,0.2), 0 0 80px rgba(0,240,255,0.05), inset 0 0 20px rgba(0,240,255,0.05)"
-                : hovered === "right"
-                  ? "0 0 40px rgba(212,168,83,0.2), 0 0 80px rgba(212,168,83,0.05), inset 0 0 20px rgba(212,168,83,0.05)"
-                  : "0 0 30px rgba(255,255,255,0.05), inset 0 0 15px rgba(255,255,255,0.02)",
-            border: "1px solid",
-            borderColor:
-              hovered === "left"
-                ? "rgba(0,240,255,0.3)"
-                : hovered === "right"
-                  ? "rgba(212,168,83,0.3)"
-                  : "rgba(255,255,255,0.08)",
-          }}
-        >
-          <div className="text-center">
-            <div className="text-[11px] font-bold tracking-tight leading-none">
-              <span className="text-text-primary">T</span>
-              <span
-                className="transition-colors duration-500"
-                style={{
-                  color:
-                    hovered === "left"
-                      ? "var(--color-accent-primary)"
-                      : hovered === "right"
-                        ? "var(--color-accent-gold)"
-                        : "var(--color-text-secondary)",
-                }}
-              >
-                M
-              </span>
+      {/* Trust & UTP Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-border/40 bg-bg-secondary/40 backdrop-blur-md rounded-3xl mb-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-[var(--font-display)]">Почему доверяют нам</h2>
+          <p className="mt-4 text-text-secondary max-w-xl mx-auto">Четыре столпа безупречного качества проведения событий от TourMedia</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {features.map((feat, index) => (
+            <motion.div
+              key={feat.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="flex gap-5 p-6 rounded-2xl bg-bg-card/40 border border-border hover:border-accent-primary/30 transition-all duration-300"
+            >
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-accent-primary/10 flex items-center justify-center">
+                {feat.icon}
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-text-primary font-[var(--font-display)]">{feat.title}</h3>
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">{feat.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Artists Grid */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 mb-24">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold font-[var(--font-display)]">Резиденты агентства</h2>
+            <p className="mt-4 text-text-secondary">Флагманские артисты нашего продюсерского центра</p>
+          </div>
+          <Link
+            href="/artists"
+            className="mt-4 sm:mt-0 inline-flex items-center gap-2 text-sm font-semibold text-accent-primary hover:text-accent-secondary transition-colors"
+          >
+            Все артисты
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {artists.slice(0, 3).map((artist, i) => (
+            <motion.div
+              key={artist.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="group relative overflow-hidden rounded-2xl bg-bg-card border border-border hover:border-accent-primary/30 transition-all duration-300"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img
+                  src={artist.image}
+                  alt={artist.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/20 to-transparent" />
+
+                {/* Badge tags */}
+                {artist.tag && (
+                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-accent-primary/20 border border-accent-primary/30 text-accent-primary backdrop-blur-md">
+                    {artist.tag}
+                  </span>
+                )}
+              </div>
+
+              <div className="p-6 relative z-10 -mt-10">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-accent-secondary">{artist.genre}</span>
+                <h3 className="text-2xl font-bold font-[var(--font-display)] text-text-primary mt-1 group-hover:text-accent-primary transition-colors">
+                  {artist.name}
+                </h3>
+                <p className="mt-3 text-sm text-text-secondary line-clamp-2 leading-relaxed">
+                  {artist.bio}
+                </p>
+                <div className="mt-5 pt-5 border-t border-border flex items-center justify-between">
+                  <Link
+                    href={`/artists/${artist.slug}`}
+                    className="text-xs font-bold uppercase tracking-widest text-text-primary group-hover:text-accent-primary transition-colors flex items-center gap-1.5"
+                  >
+                    EPK & Треки
+                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </Link>
+                  <span className={`w-2.5 h-2.5 rounded-full ${artist.available ? "bg-emerald-500" : "bg-red-500"}`} title={artist.available ? "Доступен для букинга" : "Занят"} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Live Status 24/7 Interactive Block */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 mb-24">
+        <div className="relative overflow-hidden rounded-3xl border border-accent-primary/20 bg-gradient-to-br from-bg-secondary via-bg-card to-[#0e0a1b] p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-accent-primary/[0.03] blur-[80px] pointer-events-none" />
+
+          <div className="max-w-xl text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Онлайн прямо сейчас</span>
             </div>
-            <div className="text-[6px] uppercase tracking-[0.2em] text-text-muted mt-0.5">
-              Tour Media
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold font-[var(--font-display)] leading-tight">
+              Срочный букинг или изменение райдера?
+            </h2>
+            <p className="mt-4 text-text-secondary leading-relaxed">
+              Наш продюсерский штаб дежурит круглосуточно. Любые технические вопросы, согласование сет-листа или форс-мажорные замены решаются за считанные минуты.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0 w-full md:w-auto justify-center">
+            <a
+              href="https://t.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full font-semibold text-sm bg-accent-primary/10 border border-accent-primary/30 text-accent-primary hover:bg-accent-primary hover:text-bg-primary transition-all duration-300 text-center"
+            >
+              Написать в Telegram
+            </a>
+            <Link
+              href="/contact"
+              className="px-8 py-4 rounded-full font-semibold text-sm bg-bg-tertiary hover:bg-bg-secondary text-text-primary transition-all duration-300 text-center"
+            >
+              Заполнить бриф
+            </Link>
           </div>
         </div>
-
-        {/* Vertical lines */}
-        <div
-          className="absolute bottom-full mb-0 w-px h-16 transition-all duration-700"
-          style={{
-            background:
-              hovered === "left"
-                ? "linear-gradient(to top, rgba(0,240,255,0.3), transparent)"
-                : hovered === "right"
-                  ? "linear-gradient(to top, rgba(212,168,83,0.3), transparent)"
-                  : "linear-gradient(to top, rgba(255,255,255,0.06), transparent)",
-          }}
-        />
-        <div
-          className="absolute top-full mt-0 w-px h-16 transition-all duration-700"
-          style={{
-            background:
-              hovered === "left"
-                ? "linear-gradient(to bottom, rgba(0,240,255,0.3), transparent)"
-                : hovered === "right"
-                  ? "linear-gradient(to bottom, rgba(212,168,83,0.3), transparent)"
-                  : "linear-gradient(to bottom, rgba(255,255,255,0.06), transparent)",
-          }}
-        />
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

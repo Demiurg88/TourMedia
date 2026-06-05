@@ -1,28 +1,26 @@
 import Link from "next/link";
 
 const footerLinks = {
-  label: {
-    title: "Лейбл",
+  agency: {
+    title: "Агентство",
     links: [
-      { href: "/artists", label: "Артисты" },
-      { href: "#", label: "Релизы" },
-      { href: "#", label: "Букинг" },
+      { href: "/artists", label: "Наши диджеи" },
+      { href: "/about", label: "О продюсере" },
+      { href: "/contact", label: "Букинг" },
     ],
   },
-  acoustics: {
-    title: "Акустика",
+  services: {
+    title: "Услуги",
     links: [
-      { href: "/equipment", label: "Каталог" },
-      { href: "#", label: "Проекты" },
-      { href: "#", label: "Поддержка" },
+      { href: "/contact?type=event", label: "Продюсирование событий" },
+      { href: "/contact?type=music", label: "Музыкальный консалтинг" },
+      { href: "/contact?type=dj", label: "Подбор диджеев" },
     ],
   },
-  company: {
-    title: "Компания",
+  division: {
+    title: "Акустика & LED",
     links: [
-      { href: "/about", label: "О нас" },
-      { href: "/contact", label: "Контакты" },
-      { href: "#", label: "Карьера" },
+      { href: "https://tour-media-alpha.vercel.app/", label: "MAGMA Hi-End →" },
     ],
   },
 };
@@ -79,14 +77,13 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block group">
               <span className="text-2xl font-bold tracking-tight">
-                <span className="text-text-primary">Tour</span>
-                <span className="gradient-text">Media</span>
+                <span className="text-text-primary">Александр</span>
+                <span className="gradient-text"> Турло</span>
               </span>
             </Link>
             <p className="mt-4 text-sm text-text-secondary leading-relaxed max-w-sm">
-              Архитекторы идеального звука. Объединяем электронную музыку 
-              и передовые аудиотехнологии для создания незабываемых 
-              впечатлений.
+              Продюсерский центр и постоянный штат профессиональных диджеев. 
+              Курируем музыку, контролируем работу персонала и остаемся на связи 24/7.
             </p>
 
             {/* Social Links */}
@@ -130,7 +127,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted">
-            © {new Date().getFullYear()} TourMedia. Все права защищены.
+            © {new Date().getFullYear()} Александр Турло. Все права защищены.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-text-muted hover:text-text-secondary transition-colors">

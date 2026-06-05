@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { href: "/artists", label: "Артисты" },
-  { href: "/equipment", label: "Акустика" },
-  { href: "/about", label: "О компании" },
+  { href: "/artists", label: "Наши диджеи" },
+  { href: "/about", label: "О продюсере" },
   { href: "/contact", label: "Контакты" },
 ];
 
@@ -57,12 +56,12 @@ export default function Header() {
             <div>
               <span className="text-xl font-bold tracking-tight font-[var(--font-display)]">
                 <span className="text-text-primary group-hover:text-accent-primary transition-colors duration-300">
-                  Tour
+                  Александр
                 </span>
-                <span className="gradient-text">Media</span>
+                <span className="gradient-text"> Турло</span>
               </span>
               <div className="text-[10px] uppercase tracking-[0.25em] text-text-muted font-medium">
-                Sound Architecture
+                DJ Agency & Production
               </div>
             </div>
           </Link>
